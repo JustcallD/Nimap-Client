@@ -1,0 +1,39 @@
+<div class="card product-card">
+  <div class="card-header product-card-header">
+    <h2>Add Product</h2>
+  </div>
+  <div class="card-body product-card-body">
+    <form class="product-form" (ngSubmit)="SubmitProduct()">
+      <div class="form-group">
+        <label class="product-label" for="productName">Name:</label>
+        <input
+          class="product-input"
+          type="text"
+          id="productName"
+          [(ngModel)]="productName"
+          name="productName"
+        />
+      </div>
+      <label class="product-label" for="Categories">Categories:</label>
+      <select
+        *ngIf="categories.length > 0"
+        class="product-select"
+        id="productCategory"
+        [(ngModel)]="productCategory"
+        name="productCategory"
+      >
+        <option
+          *ngFor="let category of categories"
+          [value]="category._id"
+          class="category-option"
+        >
+          {{ category.name }}
+        </option>
+      </select>
+
+      <button type="submit" [disabled]="!productCategory" class="product-btn">
+        Add Product
+      </button>
+    </form>
+  </div>
+</div>

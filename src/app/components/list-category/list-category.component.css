@@ -1,0 +1,87 @@
+.category-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.category-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.add-category-form {
+  margin-bottom: 20px;
+}
+
+.add-category-heading {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.category-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.add-category-button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.add-category-button:hover {
+  background-color: #0056b3;
+}
+
+.category-list-heading {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.category-ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.category-name {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.edit-category-button,
+.delete-category-button {
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-category-button {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.edit-category-button:hover {
+  background-color: #218838;
+}
+
+.delete-category-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.delete-category-button:hover {
+  background-color: #c82333;
+}
