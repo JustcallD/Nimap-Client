@@ -5,7 +5,7 @@ import { Product } from './Product';
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:4001/';
+  private apiUrl = 'https://nimap-server.onrender.com/';
 
   async getProductByLimit(
     page: number = 1,
@@ -15,9 +15,11 @@ export class ProductService {
       `${this.apiUrl}products?page=${page}&pageSize=${pageSize}`
     );
     const response = await data.json();
+    console.log(response);
 
     return response;
   }
+
   async addProduct(
     name: string,
     categoryId: string
@@ -38,5 +40,26 @@ export class ProductService {
     const response = await data.json();
 
     return response;
+  }
+  async updateProduct(product: Product): Promise<void> {
+    const requestOptions: RequestInit = {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: product.name,
+        categoryId: product.categoryId._id,
+      }),
+    };
+
+    await fetch(`${this.apiUrl}products/${product._id}`, requestOptions);
+  }
+  async deleteProduct(_id: string): Promise<void> {
+    const response = await fetch(`${this.apiUrl}products/${_id}`, {
+      method: 'DELETE',
+    });
+    console.log(response);
+    if (!response.ok) {
+      throw new Error('Failed to delete category');
+    }
   }
 }

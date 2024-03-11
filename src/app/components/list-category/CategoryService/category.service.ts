@@ -5,12 +5,12 @@ import { Category } from '../CategoryService/category';
   providedIn: 'root',
 })
 export class CategoryService {
-  private apiUrl = 'http://localhost:4001/';
+  private apiUrl = 'https://nimap-server.onrender.com/';
 
   async getCategory(): Promise<{ category: Category[] }> {
     const data = await fetch(`${this.apiUrl}categories`);
     const response = await data.json();
-    console.log(response); 
+    console.log(response);
     return response;
   }
   async addCategory(newCategory: Category): Promise<void> {
@@ -30,6 +30,7 @@ export class CategoryService {
     const response = await fetch(`${this.apiUrl}categories/${_id}`, {
       method: 'DELETE',
     });
+    console.log(response);
     if (!response.ok) {
       throw new Error('Failed to delete category');
     }
@@ -39,7 +40,7 @@ export class CategoryService {
     const response = await fetch(
       `${this.apiUrl}categories/${updatedCategory._id}`,
       {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },

@@ -14,6 +14,9 @@ import { CategoryService } from './CategoryService/category.service';
 export class ListCategoryComponent implements OnInit {
   categories: Category[] = [];
   newCategoryName: string = '';
+  showModal: boolean = false;
+  selectedCategory: Category | null = null;
+  updatedCategoryName: string = '';
 
   constructor(private categoryService: CategoryService) {}
 
@@ -43,6 +46,10 @@ export class ListCategoryComponent implements OnInit {
 
   async deleteCategory(_id: string) {
     try {
+      console.log('_id', _id);
+      if (!_id) {
+        throw new Error('Category ID is undefined');
+      }
       await this.categoryService.deleteCategory(_id);
       this.loadCategories();
     } catch (error) {
@@ -56,6 +63,28 @@ export class ListCategoryComponent implements OnInit {
       this.loadCategories();
     } catch (error) {
       console.error('Error updating category:', error);
+    }
+  }
+
+  // Method to open modal and set selected category for editing
+  openEditModal(category: Category) {
+    this.selectedCategory = category;
+    this.updatedCategoryName = category.name;
+    this.showModal = true;
+  }
+
+  // Method to close modal
+  closeEditModal() {
+    this.selectedCategory = null;
+    this.showModal = false;
+  }
+
+  // Method to update category name
+  async updateCategoryName() {
+    if (this.selectedCategory) {
+      this.selectedCategory.name = this.updatedCategoryName;
+      await this.updateCategory(this.selectedCategory);
+      this.closeEditModal();
     }
   }
 }

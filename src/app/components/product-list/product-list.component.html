@@ -1,4 +1,4 @@
-<div *ngIf="products" class="products-container">
+<!-- <div *ngIf="products" class="products-container">
   <h2 class="products-heading">Products</h2>
   <ul class="products-list">
     <li *ngFor="let product of products" class="product-item">
@@ -6,7 +6,38 @@
         <span class="product-id">Product ID: {{ product._id }}</span>
         <span class="product-name">Product Name: {{ product.name }}</span>
         <span class="category">Category: {{ product.categoryId.name }}</span>
-        <span class="category-id">Category ID: {{ product.categoryId._id }}</span>
+        <span class="category-id"
+          >Category ID: {{ product.categoryId._id }}</span
+        >
+      </div>
+
+      <button class="edit-product-button" (click)="openEditModal(product)">
+        Edit
+      </button>
+      <button class="edit-product-button" (click)="deleteProduct(product._id)">
+        delete
+      </button>
+      <div class="modal" [ngClass]="{ show: showModal }">
+        <div class="modal-content">
+          <span class="close" (click)="closeEditModal()">&times;</span>
+          <h2>Edit Product</h2>
+          <input type="text" placeholder="Enter updated Product name" />
+          <select
+            *ngIf="categories.length > 0"
+            class="product-select"
+            id="productCategory"
+            name="productCategory"
+          >
+            <option
+              *ngFor="let category of categories"
+              [value]="category._id"
+              class="category-option"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+          <button (click)="updateProduct()">Update</button>
+        </div>
       </div>
     </li>
   </ul>
@@ -27,9 +58,75 @@
       Next
     </button>
   </div>
-</div>
+</div> -->
 
-<div *ngIf="error" class="error-container">
-  <h2 class="error-heading">Error fetching products</h2>
-  <p class="error-message">{{ error.message }}</p>
+<div *ngIf="products" class="products-container">
+  <h2 class="products-heading">Products</h2>
+  <ul class="products-list">
+    <li *ngFor="let product of products" class="product-item">
+      <div class="product-info">
+        <span class="product-id">Product ID: {{ product._id }}</span>
+        <span class="product-name">Product Name: {{ product.name }}</span>
+        <span class="category">Category: {{ product.categoryId.name }}</span>
+        <span class="category-id"
+          >Category ID: {{ product.categoryId._id }}</span
+        >
+      </div>
+
+      <button class="edit-product-button" (click)="openEditModal(product)">
+        Edit
+      </button>
+      <button
+        class="delete-product-button"
+        (click)="deleteProduct(product._id)"
+      >
+        Delete
+      </button>
+      <div class="modal" [ngClass]="{ show: showModal }">
+        <div class="modal-content">
+          <span class="close" (click)="closeEditModal()">&times;</span>
+          <h2>Edit Product</h2>
+          <input
+            type="text"
+            [(ngModel)]="updatedProductName"
+            placeholder="Enter updated Product name"
+          />
+          <select
+            *ngIf="categories.length > 0"
+            class="product-select"
+            [(ngModel)]="updatedCategoryId"
+            name="productCategory"
+          >
+            <option
+              *ngFor="let category of categories"
+              [value]="category._id"
+              class="category-option"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+          <button (click)="updateProduct()">Update</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  
+  <div class="pagination-container">
+    <button
+      class="pagination-button"
+      (click)="prevPage()"
+      [disabled]="currentPage == 1"
+    >
+      Previous
+    </button>
+    <span class="pagination-info">{{ currentPage }} / {{ totalPages }}</span>
+    <button
+      class="pagination-button"
+      (click)="nextPage()"
+      [disabled]="currentPage == totalPages"
+    >
+      Next
+    </button>
+  </div>
 </div>
