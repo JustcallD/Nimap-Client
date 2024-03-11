@@ -9,7 +9,7 @@ export class ProductService {
 
   async getProductByLimit(
     page: number = 1,
-    pageSize: number = 5
+    pageSize: number = 10
   ): Promise<{ products: Product[]; total: number }> {
     const data = await fetch(
       `${this.apiUrl}products?page=${page}&pageSize=${pageSize}`

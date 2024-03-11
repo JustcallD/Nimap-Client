@@ -1,103 +1,75 @@
-
-.product-card {
-  width: 500px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: auto;
+.card {
   background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin: 30px auto 0;
+  padding: 15px;
+  width: 80%;
+  
 }
 
-
-.product-card-header {
-  background-color: #007bff;
-  color: #fff;
-  padding: 12px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+.card-header {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 15px;
 }
 
-
-.product-card-body {
-  padding: 20px;
+.card-header h2 {
+  font-size: 18px;
+  margin: 0;
 }
-
 
 .product-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  width: 100%;
 }
-
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
-
 
 .product-label {
+  display: block;
+  margin-bottom: 5px;
   font-weight: bold;
-  margin-bottom: 8px;
-  color: #555;
 }
 
-.product-input,
-.product-select {
+.product-input {
+  display: block;
   width: 100%;
-  padding: 12px;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  font-size: 16px;
-  color: #333;
-  transition: border-color 0.3s ease;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
 }
 
-.product-input:focus,
-.product-select:focus {
-  outline: none;
-  border-color: #007bff;
+.product-select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
 }
 
+.category-option {
+  padding: 5px 10px;
+}
 
 .product-btn {
-  background-color: #28a745;
+  background-color: #4caf50;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 12px 0;
+  border-radius: 3px;
+  padding: 10px 15px;
+  font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
-.product-btn:hover {
-  background-color: #218838;
-}
-
-
-.product-select::after {
-  content: "\25BC"; 
-  position: absolute;
-  top: calc(50% - 6px);
-  right: 10px;
-  color: #666;
-}
-
-
-.product-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-.category-option {
-  font-size: 16px;
-  color: #333;
-  background-color: #fff;
-}
-
-.category-option:hover {
-  background-color: #f4f4f4;
-}
-
-.category-option:focus {
-  background-color: #e0e0e0;
+.product-btn[disabled] {
+  background-color: #ddd;
+  cursor: not-allowed;
 }

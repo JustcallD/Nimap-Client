@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 0;
   totalProducts: number = 0;
-  limit: number = 5;
+  limit: number = 10;
   categories: any[] = [];
   showModal: boolean = false;
   selectedProduct: Product | null = null;
