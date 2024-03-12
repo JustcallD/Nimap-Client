@@ -26,9 +26,9 @@
         </button>
 
         <button
-          *ngIf="category._id"
+          *ngIf="category.id"
           class="delete-category-button"
-          (click)="deleteCategory(category._id)"
+          (click)="deleteCategory(category.id)"
         >
           Delete
         </button>

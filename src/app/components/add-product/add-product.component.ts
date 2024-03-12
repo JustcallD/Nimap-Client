@@ -15,7 +15,8 @@ export class AddProductComponent implements OnInit {
   productName: string = '';
   productCategory: string = '';
 
-  categories: { _id: string; name: string }[] = [];
+
+  categories: { id: string; name: string }[] = [];
 
   constructor(private productService: ProductService) {
    

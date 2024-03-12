@@ -24,12 +24,15 @@ export class ProductListComponent implements OnInit {
   selectedProduct: Product | null = null;
   updatedProductName: string = '';
   updatedCategoryId: string = '';
+  // loading: boolean = false;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
+    // this.loading = true;
     this.loadProducts();
     this.fetchCategories();
+    // this.loading = false;
   }
 
   async fetchCategories() {
@@ -37,8 +40,11 @@ export class ProductListComponent implements OnInit {
       const response: any = await this.productService.getCategories();
 
       this.categories = response;
+      console.log('this.categories', this.categories);
     } catch (error) {
       console.error('Error fetching categories:', error);
+    } finally {
+      // this.loading = false; // Set loading to false when data fetching is completed
     }
   }
   async loadProducts() {
@@ -69,13 +75,13 @@ export class ProductListComponent implements OnInit {
       this.loadProducts();
     }
   }
-  async deleteProduct(_id: string) {
+  async deleteProduct(id: string) {
     try {
-      console.log('_id', _id);
-      if (!_id) {
+      console.log('_id', id);
+      if (!id) {
         throw new Error('Category ID is undefined');
       }
-      await this.productService.deleteProduct(_id);
+      await this.productService.deleteProduct(id);
       this.loadProducts();
     } catch (error) {
       console.error('Error deleting category:', error);
@@ -84,7 +90,7 @@ export class ProductListComponent implements OnInit {
   openEditModal(product: Product) {
     this.selectedProduct = product;
     this.updatedProductName = product.name;
-    this.updatedCategoryId = product.categoryId._id;
+    this.updatedCategoryId = product.category_id;
     this.showModal = true;
   }
 
@@ -95,7 +101,7 @@ export class ProductListComponent implements OnInit {
   async updateProduct() {
     if (this.selectedProduct) {
       this.selectedProduct.name = this.updatedProductName;
-      this.selectedProduct.categoryId._id = this.updatedCategoryId;
+      this.selectedProduct.category_id = this.updatedCategoryId;
 
       // Update product using productService
       await this.productService.updateProduct(this.selectedProduct);

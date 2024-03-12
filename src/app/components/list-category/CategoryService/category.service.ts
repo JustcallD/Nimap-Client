@@ -26,8 +26,8 @@ export class CategoryService {
     }
   }
 
-  async deleteCategory(_id: string): Promise<void> {
-    const response = await fetch(`${this.apiUrl}categories/${_id}`, {
+  async deleteCategory(id: string): Promise<void> {
+    const response = await fetch(`${this.apiUrl}categories/${id}`, {
       method: 'DELETE',
     });
     console.log(response);
@@ -38,7 +38,7 @@ export class CategoryService {
 
   async updateCategory(updatedCategory: Category): Promise<void> {
     const response = await fetch(
-      `${this.apiUrl}categories/${updatedCategory._id}`,
+      `${this.apiUrl}categories/${updatedCategory.id}`,
       {
         method: 'PATCH',
         headers: {

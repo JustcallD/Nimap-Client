@@ -44,13 +44,13 @@ export class ListCategoryComponent implements OnInit {
     }
   }
 
-  async deleteCategory(_id: string) {
+  async deleteCategory(id: string) {
     try {
-      console.log('_id', _id);
-      if (!_id) {
+      console.log('_id', id);
+      if (!id) {
         throw new Error('Category ID is undefined');
       }
-      await this.categoryService.deleteCategory(_id);
+      await this.categoryService.deleteCategory(id);
       this.loadCategories();
     } catch (error) {
       console.error('Error deleting category:', error);

@@ -47,14 +47,14 @@ export class ProductService {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: product.name,
-        categoryId: product.categoryId._id,
+        categoryId: product.category_id,
       }),
     };
 
-    await fetch(`${this.apiUrl}products/${product._id}`, requestOptions);
+    await fetch(`${this.apiUrl}products/${product.id}`, requestOptions);
   }
-  async deleteProduct(_id: string): Promise<void> {
-    const response = await fetch(`${this.apiUrl}products/${_id}`, {
+  async deleteProduct(id: string): Promise<void> {
+    const response = await fetch(`${this.apiUrl}products/${id}`, {
       method: 'DELETE',
     });
     console.log(response);
