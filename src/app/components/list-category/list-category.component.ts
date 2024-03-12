@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Category } from './CategoryService/category';
@@ -17,11 +17,12 @@ export class ListCategoryComponent implements OnInit {
   showModal: boolean = false;
   selectedCategory: Category | null = null;
   updatedCategoryName: string = '';
-
+  isResponsive: boolean = false;
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit() {
     this.loadCategories();
+    this.onResize();
   }
 
   async loadCategories() {
@@ -86,5 +87,10 @@ export class ListCategoryComponent implements OnInit {
       await this.updateCategory(this.selectedCategory);
       this.closeEditModal();
     }
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: any) {
+    // Update isResponsive based on the window width
+    this.isResponsive = window.innerWidth < 605; // Adjust the breakpoint as needed
   }
 }

@@ -196,3 +196,20 @@ ul {
 .update-product-button:hover {
   background-color: #45a049;
 }
+@media screen and (max-width: 768px) {
+  .products-list {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  .modal-content {
+    width: 80%; 
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modal-content {
+    width: 90%; 
+  }
+  .product-item {
+    min-width: 200px; 
+  }
+}

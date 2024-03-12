@@ -1,4 +1,4 @@
-<div class="category-container">
+<!-- <div class="category-container">
   <h2 class="category-heading">Category Management</h2>
 
   <div class="add-category-form">
@@ -12,6 +12,61 @@
       />
       <button class="add-category-button" (click)="addCategory()">
         Add Category
+      </button>
+    </div>
+  </div>
+
+  <div class="category-list">
+    <h3 class="category-list-heading">Categories</h3>
+    <ul class="category-ul">
+      <li *ngFor="let category of categories" class="category-item">
+        <span class="category-name">{{ category.name }}</span>
+        <button class="edit-category-button" (click)="openEditModal(category)">
+          Edit
+        </button>
+
+        <button
+          *ngIf="category.id"
+          class="delete-category-button"
+          (click)="deleteCategory(category.id)"
+        >
+          Delete
+        </button>
+      </li>
+    </ul>
+    <div class="modal" [ngClass]="{ show: showModal }">
+      <div class="modal-content">
+        <span class="close" (click)="closeEditModal()">&times;</span>
+        <h2 class="modal-heading">Edit Category</h2>
+        <input
+          type="text"
+          [(ngModel)]="updatedCategoryName"
+          placeholder="Enter updated category name"
+          class="category-input-main"
+        />
+
+        <button (click)="updateCategoryName()" class="update-category-button">
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="category-container">
+  <h2 class="category-heading">Category Management</h2>
+
+  <div class="add-category-form">
+    <h3 class="add-category-heading">Add Category</h3>
+    <div class="add-category-body">
+      <input
+        type="text"
+        class="category-input"
+        placeholder="Enter category name"
+        [(ngModel)]="newCategoryName"
+      />
+      <button class="add-category-button" (click)="addCategory()">
+        {{ isResponsive ? "+" : "Add Category" }}
       </button>
     </div>
   </div>
